@@ -427,7 +427,7 @@ function vChat(){
  '<div id="msgs">'+S.msgs.map(function(m){return '<div class="msg '+(m.f==='me'?'me':'bot')+'">'+esc(m.t)+'</div>'}).join('')+'</div>'+
  '<div class="foot" id="ainote" style="margin:0 0 8px"></div>'+'<div class="in"><input id="inp" type="text" autocomplete="off" autocapitalize="off" enterkeyhint="send" placeholder="'+esc(u('ph'))+'" onkeydown="inpKey(event)" onkeyup="inpKey(event)"><button class="btn" type="button" onclick="sendMsg()">'+u('send')+'</button></div>';
 }
-var AI_URL='';
+var AI_URL='https://cyvora-ai.nfs65939.workers.dev';
 var SAMPLE;
 function getSample(){
  if(SAMPLE!==undefined)return Promise.resolve(SAMPLE);
