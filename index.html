@@ -54,12 +54,21 @@ nav{position:fixed;bottom:0;inset-inline:0;background:rgba(8,12,30,.96);border-t
 nav button{flex:1;background:none;border:0;color:var(--mut);padding:10px 2px;font:inherit;font-size:12px;cursor:pointer}
 nav button span{display:block;font-size:22px}nav button.on{color:var(--acc);text-shadow:0 0 10px var(--acc)}
 .foot{color:var(--mut);font-size:12px;text-align:center;margin-top:20px}
-</style>
+.splash{position:fixed;inset:0;z-index:99;background:radial-gradient(circle at 50% 40%,#1c2a70 0%,#05070f 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;transition:opacity .6s}
+.splash.hide{opacity:0;pointer-events:none}
+.splash b{font-size:54px;letter-spacing:10px;color:#00f5d4;text-shadow:0 0 24px #00f5d4,0 0 48px #7c5cff;animation:pop 1.2s ease both}
+.splash i{font-style:normal;color:#dbe6ff;font-size:15px;animation:pop 1.2s .5s ease both}
+.splash small{color:#8f9bc7;font-size:13px;animation:pop 1.2s .9s ease both}
+@keyframes pop{from{opacity:0;transform:translateY(12px) scale(.96)}to{opacity:1;transform:none}}
+.sig{margin-top:18px;text-align:center;border:1px solid rgba(0,245,212,.35);border-radius:16px;padding:14px;background:rgba(124,92,255,.12)}
+.sig span{display:block;color:var(--mut);font-size:12px}.sig strong{display:block;color:#00f5d4;font-size:17px;margin:4px 0}.sig em{font-style:normal;color:#dbe6ff;font-size:13px}
+ </style>
 </head>
 <body>
 <header><h1 id="ttl"></h1><button class="lang" id="lg" onclick="toggleLang()"></button></header>
 <div class="wrap" id="app"></div>
 <nav id="nav"></nav>
+ <div class="splash" id="spl"><b>CYVORA</b><i id="spi"></i><small id="sps"></small></div>
 <script>
 var $=function(s){return document.querySelector(s)};
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
@@ -78,7 +87,10 @@ hPlay:{ar:'اختبر ذكاءك',en:'Test Your Skills'},hPlayD:{ar:'أسئلة 
 hChat:{ar:'اسأل المساعد',en:'Ask the Assistant'},hChatD:{ar:'سيبراني · برمجي · حاسوبي',en:'Cyber · coding · computing'},
 tipT:{ar:'نصيحة اليوم',en:'Tip of the Day'},
 welcome:{ar:'مرحباً بك في CYVORA',en:'Welcome to CYVORA'},
-welcomeD:{ar:'هنا تتعلم كيف تحمي حساباتك وجهازك، وماذا تفعل عند الخطر، وتختبر معلوماتك بشكل ممتع.',en:'Learn how to protect your accounts and devices, what to do when something goes wrong, and test yourself in a fun way.'},
+sigT:{ar:'تصميم وتطوير',en:'Designed & developed by'},
+sigN:{ar:'زينب حسين علي',en:'Zainab Hussein Ali'},
+sigR:{ar:'طالبة الأمن السيبراني',en:'Cybersecurity student'},
+sigU:{ar:'الجامعة التقنية الجنوبية · الكلية التقنية ذي قار',en:'Southern Technical University · Technical College Dhi Qar'},welcomeD:{ar:'هنا تتعلم كيف تحمي حساباتك وجهازك، وماذا تفعل عند الخطر، وتختبر معلوماتك بشكل ممتع.',en:'Learn how to protect your accounts and devices, what to do when something goes wrong, and test yourself in a fun way.'},
 quiz:{ar:'اختبار الذكاء',en:'Cyber Quiz'},spot:{ar:'تصيّد أم آمن؟',en:'Phish or Safe?'},
 start:{ar:'ابدأ',en:'Start'},next:{ar:'التالي',en:'Next'},again:{ar:'إعادة',en:'Play again'},finish:{ar:'عرض النتيجة',en:'See result'},
 q:{ar:'سؤال',en:'Question'},of:{ar:'من',en:'of'},correct:{ar:'إجابة صحيحة ✅',en:'Correct ✅'},wrong:{ar:'إجابة خاطئة ❌',en:'Not quite ❌'},
@@ -91,7 +103,8 @@ chatHello:{ar:'أهلاً! أنا مساعد سيبراني. اسألني عن �
 ph:{ar:'اكتب سؤالك هنا...',en:'Type your question...'},send:{ar:'إرسال',en:'Send'},
 foot:{ar:'مشروع توعوي تعليمي. المعلومات عامة وليست بديلاً عن مختص أمن معلومات.',en:'An educational awareness project. Information is general and not a substitute for a security professional.'},
 off:{ar:'أنا برنامج سيبراني ولا أستطيع الإجابة عن أمور أخرى. اسألني عن الأمن السيبراني أو البرمجة أو الحاسوب.',en:'I am a cybersecurity program and I cannot answer other topics. Ask me about cybersecurity, programming, or computers.'},
-inDomain:{ar:'سؤال في صميم مجالي، لكن ليس لدي إجابة جاهزة مفصلة عنه. جرّب إعادة صياغته، أو اسأل عن: كلمات المرور، التصيّد، الاختراق، الملفات المشبوهة، الشبكات، أو أساسيات البرمجة.',en:'That is in my field, but I do not have a ready detailed answer. Try rephrasing, or ask about: passwords, phishing, hacked accounts, suspicious files, networks, or programming basics.'},
+inDomain:{ar:'سؤال في صميم مجالي، لكن ليس لدي إجابة جاهزة مفصلة عنه. جرّب إعادة صياغ
+ ته، أو اسأل عن: كلمات المرور، التصيّد، الاختراق، الملفات المشبوهة، الشبكات، أو أساسيات البرمجة.',en:'That is in my field, but I do not have a ready detailed answer. Try rephrasing, or ask about: passwords, phishing, hacked accounts, suspicious files, networks, or programming basics.'},
 moreHint:{ar:'هذا كل ما لدي حالياً عن هذا الموضوع. جرّب سؤالاً أكثر تحديداً، أو اسألني عن موضوع آخر في المجال.',en:'That is all I have on this topic for now. Try a more specific question, or ask about another topic in the field.'},
 askFirst:{ar:'اسألني أولاً عن موضوع سيبراني أو برمجي، ثم اطلب مني التفصيل.',en:'Ask me about a cyber or programming topic first, then ask for more detail.'},
 noAns:{ar:'لم أجد إجابة جاهزة عن «%s» لكنه ضمن مجالي.',en:'I do not have a ready answer about "%s", but it is in my field.'},
@@ -375,7 +388,7 @@ function vHome(){
  '<div class="card tip"><h3>💡 '+u('tipT')+'</h3>'+esc(tx(tip))+'</div>'+
  '<div class="grid">'+
  [['learn','📚','hLearn','hLearnD','#00f5d4'],['emg','🚨','hEmg','hEmgD','#ff4d6d'],['play','🎮','hPlay','hPlayD','#7c5cff'],['chat','🤖','hChat','hChatD','#ff4fd8']].map(function(a){return '<button class="tile" style="--c:'+a[4]+'" onclick="go(\''+a[0]+'\')"><span class="ic">'+a[1]+'</span><b>'+u(a[2])+'</b><small>'+u(a[3])+'</small></button>'}).join('')+'</div>'+
- '<div class="foot">'+u('foot')+'</div>';
+ '<div class="sig"><span>'+u('sigT')+'</span><strong>'+u('sigN')+'</strong><em>'+u('sigR')+'<br>'+u('sigU')+'</em></div>'+'<div class="foot">'+u('foot')+'</div>';
 }
 function vLearn(){
  return '<h2>'+u('hLearn')+'</h2>'+LEARN.map(function(c){
@@ -490,6 +503,11 @@ function render(){
  $('#nav').innerHTML=[['home','🏠'],['learn','📚'],['emg','🚨'],['play','🎮'],['chat','🤖']].map(function(a){return '<button class="'+(v===a[0]?'on':'')+'" onclick="go(\''+a[0]+'\')"><span>'+a[1]+'</span>'+u(a[0])+'</button>'}).join('');
 }
 render();
+ (function(){var e=$('#spl');if(!e)return;var seen=0;try{seen=sessionStorage.getItem('cs_spl')}catch(x){}
+if(seen){e.remove();return}
+$('#spi').textContent=u('sigT')+' '+u('sigN');$('#sps').textContent=u('sigR');
+setTimeout(function(){e.classList.add('hide');setTimeout(function(){e.remove()},700)},2600);
+try{sessionStorage.setItem('cs_spl','1')}catch(x){}})();
 </script>
 </body>
 </html>
