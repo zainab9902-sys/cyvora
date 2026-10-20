@@ -111,8 +111,11 @@ noAns:{ar:'لم أجد إجابة جاهزة عن «%s» لكنه ضمن مجا�
 mean:{ar:'هل تقصد: ',en:'Did you mean: '},
 closest:{ar:'أقرب موضوع لسؤالك:',en:'Closest topic to your question:'},
 tryAsk:{ar:'جرّب إعادة صياغة السؤال، أو اسأل عن: المعالج، الرام، بايثون، الخوارزميات، الشبكات، التعلم الآلي، التصيّد.',en:'Try rephrasing, or ask about: the CPU, RAM, Python, algorithms, networks, machine learning, phishing.'},
+aiDown:{ar:'تعذّر الاتصال بالذكاء الاصطناعي الآن، فهذا الرد من قاعدة المعرفة المدمجة في الموقع وقد يكون أقل دقة.',en:'The AI assistant could not be reached right now, so this answer comes from the built-in knowledge base and may be less accurate.'},
+rate:{ar:'وصلت إلى حد الاستخدام المؤقت. انتظر دقيقة ثم حاول مرة أخرى.',en:'You reached the temporary usage limit. Please wait a minute and try again.'},
+blocked:{ar:'لم أستطع إنتاج رد على هذا السؤال. جرّب صياغته بشكل مختلف أو اسأل عن جانب دفاعي.',en:'I could not produce a reply to this. Try rephrasing, or ask about a defensive angle.'},
 aiNote:{ar:'الإجابات يولّدها الذكاء الاصطناعي وقد تحتوي أخطاء. لا تكتب بيانات شخصية أو كلمات مرور.',en:'Answers are AI-generated and may contain mistakes. Do not type personal data or passwords.'},
-harm:{ar:'لا أستطيع المساعدة في اختراق أو التجسس على الآخرين أو كتابة برمجيات خبيثة. لكن يسعدني أن أشرح لك كيف تحمي نفسك، أو كيف تبدأ مسار الأمن السيبراني بطريقة قانونية (مثل منصات التدريب المرخّصة ومسابقات CTF).',en:'I cannot help with hacking or spying on others or writing malware. I would be glad to explain how to defend yourself, or how to start a legal cybersecurity path (licensed training platforms and CTF competitions).'}
+harm:{ar:'لا أستطيع المساعدة في اختراق حسابات الآخرين أو التجسس عليهم أو كتابة برمجيات خبيثة. بدائل مفيدة: إذا كان الحساب حسابك فأخبرني ماذا حصل وأرشدك لاستعادته وحمايته، أو أشرح لك كيف تحمي نفسك من هذا الهجوم، أو كيف تتعلم الأمن السيبراني بطريقة قانونية (منصات تدريب مرخّصة ومسابقات CTF).',en:'I cannot help with hacking or spying on other people, or with writing malware. Safe alternatives: if the account is yours, tell me what happened and I will guide you to recover and secure it; I can explain how to defend against this attack; or how to learn cybersecurity legally (licensed training platforms and CTF competitions).'}
 };
 function u(k){return U[k][S.lang]}
 function tx(o){return o[S.lang]}
@@ -296,10 +299,12 @@ var KB=[
 {k:['فديه','ransomware','ransom'],ar:'برامج الفدية تشفّر ملفاتك وتطلب مالاً.\n• افصل الجهاز فوراً.\n• لا تدفع.\n• ابحث عن أدوات فك رسمية (No More Ransom).\n• الحل الأفضل: نسخ احتياطي منتظم.',en:'Ransomware encrypts your files and demands money.\n• Disconnect immediately.\n• Do not pay.\n• Look for official decryptors (No More Ransom).\n• Best defense: regular backups.'},
 {k:['vpn','في بي ان','شبكه افتراضيه'],ar:'الـVPN يشفّر اتصالك ويخفي عنوانك عن الشبكة المحلية، وهو مفيد على الواي فاي العام. لكنه لا يحميك من التصيّد أو الملفات الخبيثة، فاختر خدمة موثوقة.',en:'A VPN encrypts your traffic and hides your address from the local network, useful on public Wi-Fi. It does not protect you from phishing or malware, so choose a trusted provider.'},
 {k:['جدار الحمايه','فايروول','firewall'],ar:'جدار الحماية يراقب حركة الشبكة ويسمح أو يمنع الاتصالات وفق قواعد. فعّله على جهازك وراوترك.',en:'A firewall monitors network traffic and allows or blocks connections by rules. Keep it on for your device and router.'},
-{k:['واي فاي','وايفاي','wifi','wi-fi','راوتر','router'],ar:'لتأمين الواي فاي:\n• غيّر كلمة مرور الراوتر الافتراضية.\n• استخدم تشفير WPA2 أو WPA3.\n• حدّث برنامج الراوتر.\n• عطّل WPS.\n• تجنب الشبكات العامة للأمور الحساسة.',en:'To secure Wi-Fi:\n• Change the default router password.\n• Use WPA2 or WPA3.\n• Update router firmware.\n• Disable WPS.\n• Avoid public networks for sensitive things.'},
+{k:['واي فاي','وايفاي','wifi','wi-fi','راوتر','router','secure wifi','secure my wifi','secure my home wi-fi','secure my home wifi','wifi security','wi-fi security','protect my wifi','protect my wi-fi','home wi-fi','home wifi','home network','شبكتي','شبكه البيت','شبكه الواي فاي'],ar:'لتأمين الواي فاي:\n• غيّر كلمة مرور الراوتر الافتراضية.\n• استخدم تشفير WPA2 أو WPA3.\n• حدّث برنامج الراوتر.\n• عطّل WPS.\n• تجنب الشبكات العامة للأمور الحساسة.',en:'To secure Wi-Fi:\n• Change the default router password.\n• Use WPA2 or WPA3.\n• Update router firmware.\n• Disable WPS.\n• Avoid public networks for sensitive things.'},
 {k:['تشفير','encryption','encrypt','hash','هاش','https','ssl','tls'],ar:'التشفير يحوّل البيانات إلى شكل غير مقروء إلا بمفتاح. HTTPS يشفّر الاتصال بين متصفحك والموقع. أما الـHash فبصمة أحادية الاتجاه تُستخدم لتخزين كلمات المرور والتحقق من سلامة الملفات.',en:'Encryption makes data unreadable without a key. HTTPS encrypts the link between your browser and a site. A hash is a one-way fingerprint used to store passwords and verify file integrity.'},
 {k:['هندسه اجتماعيه','social engineering','انتحال'],ar:'الهندسة الاجتماعية خداع للإنسان بدل الجهاز: اتصال من "البنك" أو رسالة من "مديرك". الدفاع: لا تتصرف تحت الضغط، وتحقق عبر قناة رسمية.',en:'Social engineering tricks the person instead of the device: a call from your "bank" or a message from your "boss". Defense: do not act under pressure and verify through an official channel.'},
-{k:['تم اختراق','اخترق حسابي','حسابي مخترق','حسابي اخترق','اختراق حسابي','hacked','got hacked','account hacked','was hacked','am hacked','compromised'],ar:'إذا اختُرق حسابك:\n1) غيّر كلمة المرور من جهاز آمن.\n2) سجّل الخروج من كل الجلسات.\n3) فعّل المصادقة الثنائية.\n4) غيّر كلمات المرور المتشابهة في حسابات أخرى.\n5) راجع البريد والتطبيقات المرتبطة.\n6) أبلغ الخدمة وأصدقاءك.\n(تجد الدليل الكامل في تبويب الطوارئ)',en:'If your account is hacked:\n1) Change the password from a safe device.\n2) Sign out of all sessions.\n3) Turn on 2FA.\n4) Change any reused passwords.\n5) Check email and linked apps.\n6) Report to the service and warn your contacts.\n(Full guide in the Emergency tab)'},
+{k:['كتبت الباسورد','دخلت الباسورد','ادخلت الباسورد','كتبت كلمه المرور','ادخلت كلمه المرور','دخلت كلمه المرور','كتبت كلمه السر','اعطيت الباسورد','ضغطت على لينك','ضغطت على رابط','ضغطت على الرابط','فتحت لينك مشبوه','فتحت رابط مشبوه','ادخلت بياناتي','entered my password','typed my password','put my password','gave my password','clicked a link','clicked on a link','clicked a suspicious','clicked a phishing','clicked the link','fell for phishing'],ar:'إذا كتبت كلمة المرور في رابط أو موقع مشبوه، تصرّف الآن بهذا الترتيب:\n1) من جهاز آخر نظيف، غيّر كلمة مرور ذلك الحساب فوراً.\n2) غيّر كلمة المرور نفسها في أي حساب آخر استخدمتها فيه.\n3) فعّل المصادقة الثنائية وسجّل الخروج من كل الجلسات.\n4) راجع بريد الاسترداد ورقم الهاتف وقواعد تحويل البريد.\n5) راقب حسابك البنكي وبطاقتك، وإن كانت البيانات مصرفية اتصل بالبنك فوراً.\n6) افحص جهازك ببرنامج حماية، ثم أبلغ عن الرسالة أو الرابط.\nلا تنتظر ظهور ضرر، فالسرعة هي الأهم.',en:'If you typed your password on a suspicious link or site, act now in this order:\n1) From a different, clean device, change that account password immediately.\n2) Change the same password anywhere else you reused it.\n3) Turn on 2FA and sign out of all sessions.\n4) Check the recovery email, phone number and mail-forwarding rules.\n5) Watch your bank account and card; if banking details were entered, call the bank right away.\n6) Scan your device with security software, then report the message or link.\nDo not wait for damage to appear; speed matters most.'},
+{k:['احمي حسابي','حمايه حسابي','حمايه الحساب','تامين حسابي','تامين الحساب','protect my account','secure my account','account security','protect my accounts'],ar:'لحماية حسابك:\n• كلمة مرور طويلة وفريدة لكل حساب مع مدير كلمات مرور.\n• فعّل المصادقة الثنائية (تطبيق Authenticator أفضل من الرسائل).\n• لا تضغط روابط الرسائل المستعجلة، وافتح الموقع الرسمي بنفسك.\n• راجع الأجهزة المسجّلة ودخول الحساب بين فترة وأخرى.\n• احفظ رموز الاسترداد في مكان آمن ولا ترسلها لأحد.\n• حدّث جهازك وتطبيقاتك.',en:'To protect your account:\n• Use a long, unique password per account, with a password manager.\n• Turn on 2FA (an authenticator app is better than SMS).\n• Do not click links in urgent messages; open the official site yourself.\n• Review signed-in devices and login activity regularly.\n• Keep recovery codes safe and never send them to anyone.\n• Keep your device and apps updated.'},
+{k:['انهكر','اتهكر','تهكر حسابي','هكروا حسابي','هكروني','انسرق حسابي','حسابي انسرق','سرقوا حسابي','حسابي مسروق','تم اختراق','اخترق حسابي','حسابي مخترق','حسابي اخترق','اختراق حسابي','hacked','got hacked','account hacked','was hacked','am hacked','compromised'],ar:'إذا اختُرق حسابك:\n1) غيّر كلمة المرور من جهاز آمن.\n2) سجّل الخروج من كل الجلسات.\n3) فعّل المصادقة الثنائية.\n4) غيّر كلمات المرور المتشابهة في حسابات أخرى.\n5) راجع البريد والتطبيقات المرتبطة.\n6) أبلغ الخدمة وأصدقاءك.\n(تجد الدليل الكامل في تبويب الطوارئ)',en:'If your account is hacked:\n1) Change the password from a safe device.\n2) Sign out of all sessions.\n3) Turn on 2FA.\n4) Change any reused passwords.\n5) Check email and linked apps.\n6) Report to the service and warn your contacts.\n(Full guide in the Emergency tab)'},
 {k:['ملف مشبوه','مرفق مشبوه','suspicious file','suspicious attachment','virustotal','فحص ملف','scan a file','scan file'],ar:'مع الملف المشبوه:\n• لا تفتحه.\n• تحقق من الامتداد (exe، apk، scr، js خطر).\n• ارفعه لفحص متعدد المحركات مثل VirusTotal.\n• اسأل المرسل عبر قناة أخرى.\n• احذفه إن شككت.',en:'For a suspicious file:\n• Do not open it.\n• Check the extension (exe, apk, scr, js are risky).\n• Upload it to a multi-engine scanner such as VirusTotal.\n• Ask the sender via another channel.\n• Delete it if in doubt.'},
 {k:['مضاد فيروسات','مكافح فيروسات','antivirus','anti-virus','defender'],ar:'مضاد الفيروسات يكتشف البرمجيات الخبيثة المعروفة وسلوكها المريب. يكفي عادةً مضاد واحد موثوق (مثل Microsoft Defender على ويندوز أو Play Protect على أندرويد) مع التحديثات، ولا يغني عن الحذر.',en:'Antivirus detects known malware and suspicious behavior. One trusted product is usually enough (such as Microsoft Defender on Windows or Play Protect on Android) plus updates, but it is no substitute for caution.'},
 {k:['تحديث','تحديثات','update','updates','patch','ثغره','vulnerability','cve'],ar:'الثغرة خطأ في البرنامج قد يستغله مهاجم. الشركات تصدر تحديثات (Patches) لإصلاحها، لذلك التحديث المنتظم من أهم وسائل الدفاع.',en:'A vulnerability is a software flaw an attacker might exploit. Vendors ship patches to fix them, so regular updating is one of the best defenses.'},
@@ -328,7 +333,7 @@ var HARM=[
 /(how to|how do i|how can i|teach me to|help me).{0,25}(hack|crack|steal|spy|ddos|phish|break into|take over).{0,40}(someone|somebody|his|her|their|friend|girlfriend|boyfriend|ex|neighbor|neighbour|wife|husband|account|wifi|wi-fi|password|phone|instagram|facebook|whatsapp|snapchat)/,
 /(write|make|create|build|code|develop|generate).{0,25}(virus|malware|ransomware|keylogger|trojan|botnet|exploit|rat|spyware|stealer|phishing (page|site|website))/,
 /(اخترق|اهكر|اسرق|اتجسس|اتجسس|تجسس|اكسر|استولي|احصل).{0,30}(حساب|واتس|فيس|انستا|سناب|جوال|هاتف|وايفاي|واي فاي|باسورد|كلمه سر|كلمه مرور).{0,30}(شخص|غيري|صديق|حبيب|زوج|اخي|اختي|جار|بدون علم|بدون اذن|طليق)/,
-/(اكتب|اصنع|اعمل|انشئ|برمج|ابني).{0,25}(فيروس|برنامج خبيث|برمجيه خبيثه|فديه|كيلوجر|برنامج تجسس|استغلال|صفحه تصيد|موقع تصيد)/
+/(اكتب|اصنع|اعمل|انشئ|برمج|ابني).{0,25}(فيروس|برنامج خبيث|برمجيه خبيثه|فديه|كيلوجر|برنامج تجسس|استغلال|صفحه تصيد|موقع تصيد|keylogger|ransomware|malware|trojan|spyware|botnet|stealer|رات)/
 ];
 var SAFE=/(scanner|detect|remove|protect|against|defen|prevent|اكتشاف|كشف|ازاله|حمايه|فحص|منع|دفاع)/;
 
@@ -336,7 +341,8 @@ function norm(s){var x=String(s).toLowerCase().replace(/[\u064B-\u065F\u0670\u06
 function words(t){return t.split(/[^a-z0-9+#.]+/).filter(Boolean)}
 function hit(k,t,w){k=norm(k);if(!/^[a-z0-9 .+#-]+$/.test(k)&&k.length<=3)return (' '+t+' ').indexOf(' '+k+' ')>-1;if(/^[a-z0-9 .+#-]+$/.test(k)){if(k.indexOf(' ')>-1||k.indexOf('-')>-1)return t.indexOf(k)>-1;return w.some(function(x){return x===k||(k.length>=5&&x.indexOf(k)===0)})}return t.indexOf(k)>-1}
 
-function isHarm(t){if(SAFE.test(t))return false;return HARM.some(function(r){return r.test(t)})}
+var OWN=/(my account|my own|my (phone|wifi|wi-fi|router|network|device|computer|laptop|password)|i was hacked|i got hacked|been hacked|got hacked|was hacked|حسابي|حسابنا|جوالي|هاتفي|شبكتي|راوتري|جهازي|باسوردي|كلمه سري|كلمه مروري|اختراق حسابي|اتهكر|انهكر|هكروا|هكروني|انسرق|اخترقوا حسابي)/;
+function isHarm(t){if(SAFE.test(t)||OWN.test(t))return false;return HARM.some(function(r){return r.test(t)})}
 
 var CMPRE=/(فرق|مقارنه|difference|versus|compare| vs |^vs )/;
 var FOLLOWRE=/(^| )(بالتفصيل|تفصيل|تفاصيل|مزيد|اكثر|اكتر|وضح|اوضح|فصل|in detail|detail|details|more|elaborate|expand|deeper)( |$)/;
@@ -467,10 +473,18 @@ function askClaude(sm,text,hist,hd){
  turns.push({role:'user',content:text});
  return sm(turns,{modelTier:'quick',cache:false,onText:function(x){setBot(hd,x.text)}}).then(function(r){setBot(hd,r.text)});
 }
+function aiErr(code){var e=new Error(code);e.aiCode=code;return e}
 function askAI(text,hist){
  var ctl=(typeof AbortController!=='undefined')?new AbortController():null;
- var to=setTimeout(function(){if(ctl)ctl.abort()},20000);
- return fetch(AI_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text,lang:S.lang,history:hist}),signal:ctl?ctl.signal:undefined}).then(function(r){clearTimeout(to);if(!r.ok)throw new Error('http');return r.json()}).then(function(j){if(!j||!j.reply)throw new Error('empty');return String(j.reply)});
+ var to=setTimeout(function(){if(ctl)ctl.abort()},25000);
+ return fetch(AI_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text,lang:S.lang,history:hist}),signal:ctl?ctl.signal:undefined}).then(function(r){
+  clearTimeout(to);
+  return r.json().catch(function(){return null}).then(function(j){
+   if(r.status===429||(j&&j.error==='rate_limited'))throw aiErr('rate');
+   if(j&&j.error==='blocked')throw aiErr('blocked');
+   if(!r.ok||!j||!j.reply)throw aiErr('down');
+   return String(j.reply)})
+ },function(){clearTimeout(to);throw aiErr('down')});
 }
 var HARDFAIL={not_granted:1,sampling_disabled:1,not_declared:1,capability_disabled:1,capability_removed:1,session_expired:1};
 function sendText(t){
@@ -478,18 +492,22 @@ function sendText(t){
  if(t.length>500)t=t.slice(0,500);
  var hist=S.msgs.filter(function(m){return !m.g&&m.t!=='…'}).slice(-6).map(function(m){return {role:m.f==='me'?'user':'model',text:m.t}});
  addMsg('me',t);
- if(isHarm(norm(t))){setTimeout(function(){addMsg('bot',u('harm'))},300);return}
+ if(isHarm(norm(t))){setTimeout(function(){var h=addMsg('bot',u('harm'));h.m.g=1},300);return}
  if(!AI_URL&&!(window.claude&&window.claude.use)){setTimeout(function(){addMsg('bot',reply(t))},350);return}
  S.busy=true;var hd=addMsg('bot','…');
+ function local(note){var a=reply(t);setBot(hd,(note?u(note)+'\n\n':'')+a);hd.m.g=1}
  getSample().then(function(sm){
   if(sm&&!S.noSample)return askClaude(sm,t,hist,hd);
   if(AI_URL)return askAI(t,hist).then(function(r){setBot(hd,r)});
   throw {code:'local'};
  }).catch(function(e){
   if(e&&HARDFAIL[e.code])S.noSample=true;
-  if(e&&e.text&&e.code!=='refused'&&e.code!=='cancelled'){setBot(hd,e.text);return}
-  if(AI_URL&&e&&e.code&&e.code!=='local'&&!S.triedAI){S.triedAI=1;return askAI(t,hist).then(function(r){setBot(hd,r)}).catch(function(){setBot(hd,reply(t))})}
-  setBot(hd,reply(t));
+  if(e&&e.text&&e.code!=='refused'&&e.code!=='cancelled'){setBot(hd,e.text);hd.m.g=1;return}
+  if(e&&e.aiCode==='rate'){setBot(hd,u('rate'));hd.m.g=1;return}
+  if(e&&e.aiCode==='blocked'){setBot(hd,u('blocked'));hd.m.g=1;return}
+  if(e&&e.aiCode==='down'){local('aiDown');return}
+  if(AI_URL&&e&&e.code&&e.code!=='local'&&!S.triedAI){S.triedAI=1;return askAI(t,hist).then(function(r){setBot(hd,r)}).catch(function(e2){if(e2&&e2.aiCode==='rate'){setBot(hd,u('rate'));hd.m.g=1}else local('aiDown')})}
+  local(AI_URL?'aiDown':'');
  }).then(function(){S.busy=false});
 }
 function sendMsg(){var i=$('#inp');if(!i)return;var t=i.value;if(!String(t).trim())return;i.value='';sendText(t);i.focus()}
