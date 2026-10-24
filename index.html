@@ -51,6 +51,7 @@ ol.steps{padding-inline-start:22px;margin:0}ol.steps li{margin-bottom:8px}
 .in{display:flex;gap:8px;position:sticky;bottom:78px}
 .in input{flex:1;background:var(--card2);color:var(--text);border:1px solid var(--bd);border-radius:12px;padding:12px;font:inherit;min-width:0}
 nav{position:fixed;bottom:0;inset-inline:0;background:rgba(8,12,30,.96);border-top:1px solid var(--bd);display:flex;z-index:6;padding-bottom:env(safe-area-inset-bottom)}
+body.ingame nav{display:none}body.ingame{padding-bottom:24px}.xit{background:none;border:0;color:var(--mut);font:inherit;font-size:13px;cursor:pointer;float:inline-end;padding:0}
 nav button{flex:1;background:none;border:0;color:var(--mut);padding:10px 2px;font:inherit;font-size:12px;cursor:pointer}
 nav button span{display:block;font-size:22px}nav button.on{color:var(--acc);text-shadow:0 0 10px var(--acc)}
 .foot{color:var(--mut);font-size:12px;text-align:center;margin-top:20px}
@@ -93,7 +94,7 @@ sigR:{ar:'طالبة الأمن السيبراني',en:'Cybersecurity student'},
 sigU:{ar:'الجامعة التقنية الجنوبية · الكلية التقنية ذي قار',en:'Southern Technical University · Technical College Dhi Qar'},
 welcomeD:{ar:'هنا تتعلم كيف تحمي حساباتك وجهازك، وماذا تفعل عند الخطر، وتختبر معلوماتك بشكل ممتع.',en:'Learn how to protect your accounts and devices, what to do when something goes wrong, and test yourself in a fun way.'},
 quiz:{ar:'اختبار الذكاء',en:'Cyber Quiz'},spot:{ar:'تصيّد أم آمن؟',en:'Phish or Safe?'},
-start:{ar:'ابدأ',en:'Start'},next:{ar:'التالي',en:'Next'},again:{ar:'إعادة',en:'Play again'},finish:{ar:'عرض النتيجة',en:'See result'},
+start:{ar:'ابدأ',en:'Start'},next:{ar:'التالي',en:'Next'},again:{ar:'إعادة',en:'Play again'},exit:{ar:'✕ خروج',en:'✕ Exit'},finish:{ar:'عرض النتيجة',en:'See result'},
 q:{ar:'سؤال',en:'Question'},of:{ar:'من',en:'of'},correct:{ar:'إجابة صحيحة ✅',en:'Correct ✅'},wrong:{ar:'إجابة خاطئة ❌',en:'Not quite ❌'},
 quizD:{ar:'10 أسئلة جديدة في كل مرة من بنك أسئلة كبير، مع شرح كل إجابة.',en:'10 fresh questions every round from a large question bank, with an explanation for each answer.'},
 spotD:{ar:'اقرأ الرسالة وقرر: هل هي محاولة تصيّد أم رسالة آمنة؟',en:'Read the message and decide: is it a phishing attempt or safe?'},
@@ -411,12 +412,14 @@ function vPlay(){
  return '<h2>'+u('hPlay')+'</h2>'+sw+(S.mode==='quiz'?vQuiz():vPhish());
 }
 function level(p){return p>=.9?u('lv4'):p>=.7?u('lv3'):p>=.5?u('lv2'):u('lv1')}
+function inGame(){var z=S.view==='play'?(S.mode==='quiz'?S.quiz:S.phish):null;return !!(z&&!z.done)}
+function quitG(){if(S.mode==='quiz')S.quiz=null;else S.phish=null;render();window.scrollTo(0,0)}
 function vQuiz(){
  var z=S.quiz;
  if(!z)return '<div class="card"><p>'+u('quizD')+'</p><button class="btn" onclick="startQuiz()">'+u('start')+'</button></div>';
  if(z.done){return '<div class="card"><div class="score">'+z.score+' / '+z.qs.length+'</div><p style="text-align:center;font-size:24px;margin:0;color:var(--acc)"><b>'+Math.round(z.score/z.qs.length*100)+'%</b></p><p style="text-align:center;font-size:18px"><b>'+level(z.score/z.qs.length)+'</b></p><button class="btn" onclick="startQuiz()">'+u('again')+'</button></div>'}
  var q=z.qs[z.i];
- var h='<div class="card"><small>'+u('q')+' '+(z.i+1)+' '+u('of')+' '+z.qs.length+'</small><div class="bar"><i style="width:'+((z.i)/z.qs.length*100)+'%"></i></div><h3>'+esc(tx(q.q))+'</h3>';
+ var h='<div class="card"><button class="xit" onclick="quitG()">'+u('exit')+'</button><small>'+u('q')+' '+(z.i+1)+' '+u('of')+' '+z.qs.length+'</small><div class="bar"><i style="width:'+((z.i)/z.qs.length*100)+'%"></i></div><h3>'+esc(tx(q.q))+'</h3>';
  q.o[S.lang].forEach(function(o,j){var c='opt';if(z.sel!==null){if(j===q.a)c+=' ok';else if(j===z.sel)c+=' no'}h+='<button class="'+c+'" onclick="ansQ('+j+')">'+esc(o)+'</button>'});
  if(z.sel!==null){h+='<div class="exp"><b>'+(z.sel===q.a?u('correct'):u('wrong'))+'</b><br>'+esc(tx(q.e))+'</div><button class="btn" onclick="nextQ()">'+(z.i===z.qs.length-1?u('finish'):u('next'))+'</button>'}
  return h+'</div>';
@@ -430,7 +433,7 @@ function vPhish(){
  if(!z)return '<div class="card"><p>'+u('spotD')+'</p><button class="btn" onclick="startPh()">'+u('start')+'</button></div>';
  if(z.done){return '<div class="card"><div class="score">'+z.score+' / '+z.items.length+'</div><p style="text-align:center;font-size:24px;margin:0;color:var(--acc)"><b>'+Math.round(z.score/z.items.length*100)+'%</b></p><p style="text-align:center;font-size:18px"><b>'+level(z.score/z.items.length)+'</b></p><button class="btn" onclick="startPh()">'+u('again')+'</button></div>'}
  var it=z.items[z.i];
- var h='<div class="card"><small>'+u('q')+' '+(z.i+1)+' '+u('of')+' '+z.items.length+'</small><div class="bar"><i style="width:'+(z.i/z.items.length*100)+'%"></i></div><div class="sms">'+esc(it.m)+'</div>';
+ var h='<div class="card"><button class="xit" onclick="quitG()">'+u('exit')+'</button><small>'+u('q')+' '+(z.i+1)+' '+u('of')+' '+z.items.length+'</small><div class="bar"><i style="width:'+(z.i/z.items.length*100)+'%"></i></div><div class="sms">'+esc(it.m)+'</div>';
  if(z.sel===null){h+='<div class="row"><button class="btn sec" onclick="ansP(1)">'+u('phishB')+'</button><button class="btn sec" onclick="ansP(0)">'+u('safeB')+'</button></div>'}
  else{h+='<div class="exp"><b>'+((z.sel===it.p)?u('correct'):u('wrong'))+'</b><br>'+(it.p?u('phishB'):u('safeB'))+' — '+esc(tx(it.e))+'</div><button class="btn" onclick="nextP()">'+(z.i===z.items.length-1?u('finish'):u('next'))+'</button>'}
  return h+'</div>';
@@ -517,7 +520,7 @@ function render(){
  document.documentElement.lang=S.lang;document.documentElement.dir=S.lang==='ar'?'rtl':'ltr';
  document.title=u('app');$('#ttl').innerHTML='<span class="lg1">⬢</span><span class="logo">CYVORA</span>';$('#lg').textContent=u('langbtn');
  var v=S.view;var h=v==='home'?vHome():v==='learn'?vLearn():v==='emg'?vEmg():v==='play'?vPlay():vChat();
- $('#app').innerHTML=h;if(v==='chat')updNote();
+ $('#app').innerHTML=h;document.body.classList.toggle('ingame',inGame());if(v==='chat')updNote();
  $('#nav').innerHTML=[['home','🏠'],['learn','📚'],['emg','🚨'],['play','🎮'],['chat','🤖']].map(function(a){return '<button class="'+(v===a[0]?'on':'')+'" onclick="go(\''+a[0]+'\')"><span>'+a[1]+'</span>'+u(a[0])+'</button>'}).join('');
 }
 render();
